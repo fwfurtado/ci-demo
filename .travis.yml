@@ -1,0 +1,36 @@
+cache:
+  directories:
+    - $HOME/.m2
+
+language: java
+
+services:
+  - docker
+
+install: skip
+
+stages:
+  - test
+  - deploy
+
+jobs:
+  include:
+    - stage: test
+      name: 'Testing application'
+      script:
+        - make test
+
+    - stage: package
+      name: 'Packaging application'
+      script:
+        - make package
+
+    - stage: deploy
+      name: 'Deploy contracts'
+      script:
+        - make deploy/contract
+
+    - stage: deploy
+      name: 'Deploy docker image'
+      script:
+        - make deploy/docker
