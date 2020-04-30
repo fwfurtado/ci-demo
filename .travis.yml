@@ -11,6 +11,7 @@ install: skip
 
 stages:
   - test
+  - package
   - deploy
 
 jobs:
@@ -29,8 +30,3 @@ jobs:
       name: 'Deploy contracts'
       script:
         - make deploy/contract
-
-    - stage: deploy
-      name: 'Deploy docker image'
-      script:
-        - make deploy/docker
