@@ -4,6 +4,9 @@ cache:
 
 language: java
 
+services:
+  - docker
+
 install: skip
 
 stages:
@@ -14,9 +17,6 @@ jobs:
   include:
     - stage: test
       name: 'Testing application'
-      services: postgresql
-      before_script:
-        - psql -c 'CREATE DATABASE ci_test;' -U postgres
       script:
         - make test
 
@@ -25,3 +25,4 @@ jobs:
       script:
         - make package
         - make deploy/contract
+
