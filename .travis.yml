@@ -12,6 +12,7 @@ install: skip
 stages:
   - test
   - package
+  - deploy
 
 jobs:
   include:
@@ -25,4 +26,7 @@ jobs:
       script:
         - make package
         - make deploy/contract
-
+    - stage: deploy
+      name: 'Deploy application on heroku'
+      script:
+        - make deploy
